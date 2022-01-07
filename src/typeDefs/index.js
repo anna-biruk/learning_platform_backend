@@ -4,7 +4,8 @@ const typeDefs = gql`
 
   # This "Book" type defines the queryable fields for every book in our data source.
   type Book {
-    title: String 
+    id: ID
+    title: String
     author: String
   }
 
@@ -12,7 +13,16 @@ const typeDefs = gql`
   # clients can execute, along with the return type for each. In this
   # case, the "books" query returns an array of zero or more Books (defined above).
   type Query {
-    books(title: String , author: String ): [Book]
+    books(title: String, author: String): [Book]
+  }
+
+  input BookInput {
+    title: String
+    author: String
+  }
+  type Mutation {
+    createBook(title: String, author: String): Book
+    updateBookItem(id: ID!, book: BookInput!): Book
   }
 `;
 

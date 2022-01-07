@@ -9,6 +9,16 @@ class BooksRepository {
       .exec();
     return books;
   }
+  async createBook({ title, author }) {
+    const book = await BooksModel.create({ title, author });
+    return book;
+  }
+  async updateBookItem({ id, book }) {
+    const updatedBook = await BooksModel.findByIdAndUpdate(id, book, {
+      new: true,
+    });
+    return updatedBook;
+  }
 }
 
 export default new BooksRepository();
