@@ -1,24 +1,15 @@
-import BooksModel from "../database/book.model.js";
+import CourseModel from "../database/course.model.js";
 
-class BooksRepository {
-  async getAllBooks(filter, limit = 10, offset = 0) {
-    const books = await BooksModel.find(filter)
+class CoursesRepository {
+  async getAllCourses(filter, limit = 10, offset = 0) {
+    const courses = await CourseModel.find(filter)
       .skip(offset)
       .limit(limit)
       .lean()
       .exec();
-    return books;
+    return courses;
   }
-  async createBook({ title, author }) {
-    const book = await BooksModel.create({ title, author });
-    return book;
-  }
-  async updateBookItem({ id, book }) {
-    const updatedBook = await BooksModel.findByIdAndUpdate(id, book, {
-      new: true,
-    });
-    return updatedBook;
-  }
+ 
 }
 
-export default new BooksRepository();
+export default new CoursesRepository();

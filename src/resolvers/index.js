@@ -1,30 +1,19 @@
-import booksService from "../services/index.js";
+import coursesService from "../services/index.js";
 
 const resolvers = {
   Query: {
-    books: async (parent, args) => {
-      const { title, author } = args;
-
+    courses: async (parent, args) => {
+      const { id, title } = args;
       const filter = {};
-      if (title && author) {
-        filter.$or = [{ title }, { author }];
+      if (id && title) {
+        filter.$or = [{ title }, { id }];
       } else if (title) {
         filter.title = title;
-      } else if (author) {
-        filter.author = author;
+      } else if (id) {
+        filter.id = id;
       }
-      const books = await booksService.getAllBooks(filter, 10, 0);
-      return books;
-    },
-  },
-  Mutation: {
-    createBook: async (parent, { title, author }) => {
-      const book = await booksService.createBook({ title, author });
-      return book;
-    },
-    updateBookItem: async (parent, { id, book }) => {
-      const updatedBook = await booksService.updateBookItem({ id, book });
-      return updatedBook;
+      const courses = await coursesService.getAllCourses(filter, 10, 0);
+      return courses;
     },
   },
 };
