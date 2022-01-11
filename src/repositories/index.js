@@ -1,7 +1,14 @@
 import CourseModel from "../database/course.model.js";
 
 class CoursesRepository {
-  async getAllCourses(filter, limit = 10, offset = 0) {
+  async getAllCourses(searchString, limit = 10, offset = 0) {
+    const filter = {};
+    if (searchString) {
+      filter.$or = [
+        { title: { $regex: searchString, $options: "i" } },
+        { description: { $regex: searchString, $options: "i" } },
+      ];
+    }
     const courses = await CourseModel.find(filter)
       .skip(offset)
       .limit(limit)
@@ -9,7 +16,6 @@ class CoursesRepository {
       .exec();
     return courses;
   }
- 
 }
 
 export default new CoursesRepository();
