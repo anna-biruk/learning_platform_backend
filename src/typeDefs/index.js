@@ -13,17 +13,17 @@ const typeDefs = gql`
     }
 
     type Course {
-            id: ID
-            title: String
-            description: String
-            fullDescription:String
-            price: Float
-            sellPrice: Float
-            questions: [Question]
-            technologies: [String]
-            rating: Int
-            language: String
-            imageUrl: String
+        id: ID
+        title: String
+        description: String
+        fullDescription:String
+        price: Float
+        sellPrice: Float
+        questions: [Question]
+        technologies: [String]
+        rating: Int
+        language: String
+        imageUrl: String
     }
 
     # The "Query" type is special: it lists all of the available queries that
@@ -31,6 +31,7 @@ const typeDefs = gql`
     # case, the "books" query returns an array of zero or more Books (defined above).
     type Query {
         courses(searchString: String): [Course]
+        courseById(id: ID):Course
     }
 `;
 

@@ -7,6 +7,11 @@ const resolvers = {
             const courses = await coursesService.getAllCourses(searchString, 10, 0);
             return courses;
         },
+        courseById: async (parent, args) => {
+            const {id} = args;
+            const course = await coursesService.getCourseById(id)
+            return course;
+        }
     },
 };
 

@@ -15,6 +15,10 @@ class CoursesService {
         });
         return result;
     }
+    async getCourseById(id){
+        const course = await coursesRepository.getCourseById(id)
+        return course;
+    }
 }
 
 export default new CoursesService();
