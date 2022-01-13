@@ -1,8 +1,8 @@
 import CourseModel from "../database/course.model.js";
 
 class CoursesRepository {
-    async getAllCourses(searchString, limit = 10, offset = 0) {
-        const filter = {};
+    async getAllCourses(searchString, language, limit = 10, offset = 0) {
+        const filter = {language: language};
 
         if (searchString) {
             filter.$or = [

@@ -1,9 +1,10 @@
 import coursesRepository from "../repositories/index.js";
 
 class CoursesService {
-    async getAllCourses(searchString, limit, offset) {
+    async getAllCourses(searchString, language, limit, offset) {
         const courses = await coursesRepository.getAllCourses(
             searchString,
+            language,
             limit,
             offset
         );
@@ -15,7 +16,8 @@ class CoursesService {
         });
         return result;
     }
-    async getCourseById(id){
+
+    async getCourseById(id) {
         const course = await coursesRepository.getCourseById(id)
         return course;
     }
