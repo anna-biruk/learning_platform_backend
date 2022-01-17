@@ -1,8 +1,8 @@
 import {ApolloServer} from "apollo-server-express";
 import {ApolloServerPluginDrainHttpServer} from 'apollo-server-core';
 import http from 'http';
-import resolvers from "./src/resolvers/index.js";
-import typeDefs from "./src/typeDefs/index.js";
+import resolvers from "./src/resolvers/courses.resolver.js";
+import typeDefs from "./src/typeDefs/courses.typedefs.js";
 import "./src/database/index.js";
 import express from "express";
 import router from "./src/auth/index.js";

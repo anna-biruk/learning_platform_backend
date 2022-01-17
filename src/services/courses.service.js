@@ -1,4 +1,4 @@
-import coursesRepository from "../repositories/index.js";
+import coursesRepository from "../repositories/courses.repository.js";
 
 class CoursesService {
     async getAllCourses(searchString, language, limit, offset) {
