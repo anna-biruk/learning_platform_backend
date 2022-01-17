@@ -11,8 +11,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@apollo/gateway": "^0.45.1",
     "apollo-server": "^3.6.1",
-    "graphql": "^16.2.0",
-    "mongoose": "5.13.12"
+    "apollo-server-core": "^3.6.1",
+    "apollo-server-express": "^3.6.1",
+    "express": "^4.17.2",
+    "graphql": "^15.7.2",
+    "graphql-middleware": "^6.1.13",
+    "mongoose": "5.13.12",
+    "passport": "^0.5.2",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-google-oidc": "^0.1.0"
+  },
+  "devDependencies": {
+    "@apollo/federation": "^0.33.8"
   }
 }
