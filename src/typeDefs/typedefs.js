@@ -33,6 +33,18 @@ const typeDefs = gql`
         picture: String,
         locale: String,
     }
+    type Interview{
+        name: String,
+        description: String,
+        jobTitle: String,
+        price: Float,
+        sellPrice: Float,
+        technologies: [String],
+        shedule: [String],
+        linkedinUrl: String,
+        imageUrl: String,
+        isDisabled: Boolean
+    }
 
     # The "Query" type is special: it lists all of the available queries that
     # clients can execute, along with the return type for each. In this
@@ -41,6 +53,7 @@ const typeDefs = gql`
         courses(searchString: String, language:String): [Course]
         courseById(id: ID):Course
         users: [User]
+        interviews:[Interview]
     }
 `;
 
