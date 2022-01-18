@@ -18,6 +18,7 @@ const resolvers = {
             const users = await usersService.getAllUsers(10, 0);
             return users;
         },
+
         interviews: async (parent, args) => {
             const interviews = await interviewService.getAllInterviews(10, 0)
             return interviews
