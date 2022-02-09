@@ -2,7 +2,7 @@ import {gql} from "apollo-server";
 
 const typeDefs = gql`
     # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
-
+    scalar Date
     type Question {
         id: ID
         question: String
@@ -27,11 +27,19 @@ const typeDefs = gql`
     }
 
     type User {
-        providerId: String,
         displayName: String,
         provider: String,
         picture: String,
         locale: String,
+    }
+    enum ScheduleStatus{
+        free
+        booked
+    }
+    type ScheduleItem{
+        from:Date,
+        to:Date,
+        status:ScheduleStatus
     }
     type Interview{
         name: String,
@@ -40,7 +48,7 @@ const typeDefs = gql`
         price: Float,
         sellPrice: Float,
         technologies: [String],
-        shedule: [String],
+        schedule: [ScheduleItem],
         linkedinUrl: String,
         imageUrl: String,
         isDisabled: Boolean
@@ -54,6 +62,7 @@ const typeDefs = gql`
         courseById(id: ID):Course
         users: [User]
         interviews:[Interview]
+        me(token:String):User
     }
 `;
 

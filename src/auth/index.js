@@ -2,6 +2,8 @@ import {Strategy as GoogleStrategy} from 'passport-google-oauth20';
 import passport from "passport";
 import {Router} from "express";
 import UserModel from "../database/user.model.js";
+import authService from '../services/auth.servise.js'
+
 
 const router = new Router()
 
@@ -19,9 +21,9 @@ passport.use(new GoogleStrategy({
         callbackURL: "http://localhost:4000/auth/google/callback"
     },
     async (accessToken, refreshToken, profile, cb) => {
-        const user = await UserModel.findOne({providerId: profile.id})
+        let user = await UserModel.findOne({providerId: profile.id})
         if (!user) {
-            await UserModel.create({
+            user = await UserModel.create({
                 providerId: profile.id,
                 displayName: profile.displayName,
                 provider: profile.provider,
@@ -33,7 +35,7 @@ passport.use(new GoogleStrategy({
 
         }
         console.log(JSON.stringify(profile))
-        cb(null, profile)
+        cb(null, user.toJSON())
     }
 ));
 
@@ -45,7 +47,8 @@ router.get('/auth/google/callback',
     passport.authenticate('google', {failureRedirect: '/login'}),
     function (req, res) {
         // Successful authentication, redirect home.
-        res.redirect('/');
+        const token = authService.createAuthToken(req.user._id.toString(), req.user.displayName)
+        res.redirect(`http://localhost:3000/login?token=${token}`);
     });
 
 

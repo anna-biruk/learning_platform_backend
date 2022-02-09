@@ -10,6 +10,11 @@ class UsersRepository {
         return users;
 
     }
+
+    async getUserById(id) {
+        const user = await UserModel.findById(id).lean();
+        return user;
+    }
 }
 
 export default new UsersRepository();

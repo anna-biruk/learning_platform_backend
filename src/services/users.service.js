@@ -7,6 +7,11 @@ class UsersService {
         );
         return users;
     }
+
+    async getUserById(id) {
+        const user = await usersRepository.getUserById(id)
+        return user;
+    }
 }
 
 export default new UsersService()

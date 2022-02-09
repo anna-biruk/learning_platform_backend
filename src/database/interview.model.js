@@ -7,7 +7,15 @@ const interviewSchema = new mongoose.Schema({
     price: Number,
     sellPrice: Number,
     technologies: [String],
-    shedule: [String],
+    schedule: [{
+        from: Date,
+        to: Date,
+        status: {
+            type: String,
+            enum: ['free', 'booked'],
+            default: 'free'
+        }
+    }],
     linkedinUrl: String,
     imageUrl: String,
     isDisabled: Boolean
