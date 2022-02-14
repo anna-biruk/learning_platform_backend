@@ -8,8 +8,6 @@ async function connectToDB() {
     mongoose.set("useFindAndModify", false);
     mongoose.set("useCreateIndex", true);
     mongoose.set("useUnifiedTopology", true);
-    await mongoose.connect(
-        "mongodb://root:example@localhost:27017/courses?authSource=admin"
-    );
+    await mongoose.connect(process.env.MONGO_URL);
     console.log("Connected to MongoDB");
 }
